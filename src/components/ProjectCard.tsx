@@ -1,4 +1,3 @@
-cat > src/components/ProjectCard.tsx << 'EOF'
 import Link from 'next/link'
 import { getStrapiMedia } from '@/lib/utils'
 
@@ -24,8 +23,7 @@ interface ProjectCardProps {
 const ProjectCard = ({ project }: ProjectCardProps) => {
   const { title, description, slug, image, tech_stack } = project.attributes
   const techArray = tech_stack ? tech_stack.split(',').map(t => t.trim()) : []
-  const fallbackImage = projectImages[slug] || `https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80`
-
+  const fallbackImage = projectImages[slug] || 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80'
   const imageUrl = image?.data ? getStrapiMedia(image) : fallbackImage
 
   return (
@@ -64,4 +62,3 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 }
 
 export default ProjectCard
-EOF
