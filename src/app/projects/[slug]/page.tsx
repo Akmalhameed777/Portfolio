@@ -20,6 +20,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
   }
 
   const { title, description, image, tech_stack, github_url, live_url } = project.attributes
+  const techArray = tech_stack ? (typeof tech_stack === "string" ? tech_stack.split(",").map((t: string) => t.trim()) : tech_stack) : []
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -45,11 +46,11 @@ export default async function ProjectPage({ params }: { params: { slug: string }
           </div>
         )}
 
-        {tech_stack && tech_stack.length > 0 && (
+        {techArray.length > 0 && (
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-4">Tech Stack</h2>
             <div className="flex flex-wrap gap-3">
-              {tech_stack.map((tech: string, index: number) => (
+              {techArray.map((tech: string, index: number) => (
                 <span
                   key={index}
                   className="px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-semibold"
