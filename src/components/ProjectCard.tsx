@@ -2,9 +2,9 @@ import Link from 'next/link'
 import { getStrapiMedia } from '@/lib/utils'
 
 const projectImages: { [key: string]: string } = {
-  'mail-management-jwt': 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=800&q=80',
-  'car-service-reservation': 'https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=800&q=80',
-  'college-admissions-system': 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80',
+  'mail-management-jwt': 'https://picsum.photos/seed/mail/800/400',
+  'car-service-reservation': 'https://picsum.photos/seed/car/800/400',
+  'college-admissions-system': 'https://picsum.photos/seed/college/800/400',
 }
 
 interface ProjectCardProps {
@@ -23,7 +23,7 @@ interface ProjectCardProps {
 const ProjectCard = ({ project }: ProjectCardProps) => {
   const { title, description, slug, image, tech_stack } = project.attributes
   const techArray = tech_stack ? tech_stack.split(',').map(t => t.trim()) : []
-  const fallbackImage = projectImages[slug] || 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80'
+  const fallbackImage = projectImages[slug] || 'https://picsum.photos/seed/code/800/400'
   const imageUrl = image?.data ? getStrapiMedia(image) : fallbackImage
 
   return (
