@@ -24,7 +24,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   const { title, description, slug, image, tech_stack } = project.attributes
   const techArray = tech_stack ? tech_stack.split(',').map(t => t.trim()) : []
   const fallbackImage = projectImages[slug] || 'https://picsum.photos/seed/code/800/400'
-  const imageUrl = image?.data ? getStrapiMedia(image) : fallbackImage
+  const imageUrl = (image?.data ? getStrapiMedia(image) : null) || fallbackImage
 
   return (
     <Link href={`/projects/${slug}`}>
