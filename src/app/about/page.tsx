@@ -12,6 +12,12 @@ export default async function AboutPage() {
     console.error('Error fetching about data:', error)
   }
 
+  const skillsArray = aboutData?.attributes?.skills
+    ? typeof aboutData.attributes.skills === 'string'
+      ? aboutData.attributes.skills.split(',').map((s: string) => s.trim())
+      : aboutData.attributes.skills
+    : []
+
   return (
     <div className="container mx-auto px-4 py-12">
       <h1 className="text-4xl font-bold mb-8 text-center">About Me</h1>
@@ -40,11 +46,11 @@ export default async function AboutPage() {
           </div>
 
           {/* Skills */}
-          {aboutData.attributes.skills && aboutData.attributes.skills.length > 0 && (
+          {skillsArray.length > 0 && (
             <div className="mb-12">
               <h2 className="text-3xl font-bold mb-6">Skills</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {aboutData.attributes.skills.map((skill: string, index: number) => (
+                {skillsArray.map((skill: string, index: number) => (
                   <div
                     key={index}
                     className="bg-white p-4 rounded-lg shadow-md text-center hover:shadow-lg transition"
@@ -75,7 +81,7 @@ export default async function AboutPage() {
             <p className="text-gray-600 mb-6">
               Add your about information in Strapi to display it here.
             </p>
-            <a
+            
               href="http://localhost:1337/admin"
               target="_blank"
               rel="noopener noreferrer"
