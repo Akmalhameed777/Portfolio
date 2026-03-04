@@ -20,6 +20,13 @@ export default async function ProjectPage({ params }: { params: { slug: string }
   }
 
   const { title, description, image, tech_stack, github_url, live_url } = project.attributes
+  const projectImages: { [key: string]: string } = {
+    'mail-management-jwt': 'https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=800&q=80',
+    'car-service-reservation': 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=800&q=80',
+    'college-admissions-system': 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80',
+  }
+  const fallbackImage = projectImages[params.slug] || 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80'
+  const imageUrl = (image?.data ? getStrapiMedia(image) : null) || fallbackImage
   const techArray = tech_stack ? (typeof tech_stack === "string" ? tech_stack.split(",").map((t: string) => t.trim()) : tech_stack) : []
 
   return (
