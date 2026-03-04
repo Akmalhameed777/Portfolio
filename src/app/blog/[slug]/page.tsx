@@ -19,7 +19,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     notFound()
   }
 
-  const { title, content, cover_image, published_at, published, author, excerpt } = post.attributes
+  const { title, content, cover_image, published_at, published, publishedAt, author, excerpt } = post.attributes
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -55,7 +55,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             )}
             <div className="flex items-center">
               <FaClock className="mr-2" />
-              <span>{formatDate(published_at || published || '')}</span>
+              <span>{formatDate(published_at || published || publishedAt || '')}</span>
             </div>
           </div>
 
